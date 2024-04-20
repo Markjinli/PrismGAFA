@@ -30,7 +30,25 @@ function displayLaptops(laptops) {
         const row = tableBody.insertRow();
         const imgCell = row.insertCell();
         const img = document.createElement('img');
-        img.src = `https://raw.githubusercontent.com/Markjinli/PrismGAFA/main/images/${laptop['Model']}.jpg`;
+        img.src = `function displayLaptops(laptops) {
+    const tableBody = document.getElementById('laptop-table').getElementsByTagName('tbody')[0];
+    laptops.forEach(laptop => {
+        const row = tableBody.insertRow();
+        const imgCell = row.insertCell();
+        const img = document.createElement('img');
+        // 确保URL路径和文件名正确
+        img.src = `https://markjinli.github.io/PrismGAFA/images/${encodeURI(laptop['Model'])}.JPG`;
+        img.style.width = '100px'; // 设置图片大小
+        imgCell.appendChild(img);
+
+        Object.values(laptop).forEach((text, index) => {
+            if (index === 0) return; // Skip the model for the image URL
+            const cell = row.insertCell();
+            cell.textContent = text;
+        });
+    });
+}
+`;
         img.style.width = '100px'; // 设置图片大小
         imgCell.appendChild(img);
 
