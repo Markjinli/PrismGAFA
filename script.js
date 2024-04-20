@@ -35,4 +35,32 @@ function displayLaptops(laptops) {
         imgCell.appendChild(img);
 
         Object.values(laptop).forEach((text, index) => {
-            if (index === 0) return; //
+            if (index === 0) return; // Skip image URL
+            const cell = row.insertCell();
+            cell.textContent = text;
+        });
+    });
+}
+
+function filterLaptops() {
+    const minPrice = parseFloat(document.getElementById('minPrice').value);
+    const maxPrice = parseFloat(document.getElementById('maxPrice').value);
+    const allRows = document.getElementById('laptop-table').getElementsByTagName('tbody')[0].rows;
+    Array.from(allRows).forEach(row => {
+        const price = parseFloat(row.cells[2].textContent);
+        if (price < minPrice || price > maxPrice) {
+            row.style.display = 'none';
+        } else {
+            row.style.display = '';
+        }
+    });
+}
+
+function updatePriceRange() {
+    const minPriceValue = document.getElementById('minPrice').value;
+    const maxPriceValue = document.getElementById('maxPrice').value;
+    document.getElementById('minPriceValue').textContent = minPriceValue;
+    document.getElementById('maxPriceValue').textContent = maxPriceValue;
+}
+
+window.onload = fetchLaptops;
