@@ -4,15 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laptop Finder</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Find Your Laptop</h1>
-    <div>
-        Price range: <input type="text" id="min-price"> to <input type="text" id="max-price">
-        <button onclick="filterLaptops()">Filter</button>
-    </div>
+    <label for="priceRange">Price range:</label>
+    <input type="range" id="priceRange" min="500" max="2500" value="2500" oninput="updatePriceRange(value)">
+    <span id="priceValue">2500</span>
+    <button onclick="filterLaptops()">Filter</button>
     <table id="laptop-table">
-        <!-- Table will be filled by JavaScript -->
+        <thead>
+            <tr>
+                <th>Model</th>
+                <th>Price</th>
+                <th>CPU</th>
+                <th>RAM (GB)</th>
+                <th>Storage (GB)</th>
+                <th>Screen (Inch)</th>
+                <th>Battery (Hours)</th>
+                <th>CPU Performance</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data rows will go here -->
+        </tbody>
     </table>
     <script src="script.js"></script>
 </body>
