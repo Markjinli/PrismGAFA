@@ -1,6 +1,6 @@
 async function fetchLaptops() {
     try {
-        const response = await fetch('https://raw.githubusercontent.com/Markjinli/PrismGAFA/main/Laptop_Data_UTF8.csv');
+        const response = await fetch('https://markjinli.github.io/PrismGAFA/data/Laptop_Data_UTF8.csv');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -15,13 +15,7 @@ function parseCSV(csvData) {
     const lines = csvData.split('\n');
     const headers = lines[0].split(',');  // 如果有标题行
     const rows = lines.slice(1);          // 去掉标题行
-    return rows.map(row => {
-        const values = row.split(',');
-        return headers.reduce((obj, header, index) => {
-            obj[header.trim()] = values[index].trim();
-            return obj;
-        }, {});
-    });
+    return rows.map(row => row.split(',').map(cell => cell.trim()));
 }
 
 function displayLaptops(laptops) {
@@ -30,30 +24,11 @@ function displayLaptops(laptops) {
         const row = tableBody.insertRow();
         const imgCell = row.insertCell();
         const img = document.createElement('img');
-        img.src = `function displayLaptops(laptops) {
-    const tableBody = document.getElementById('laptop-table').getElementsByTagName('tbody')[0];
-    laptops.forEach(laptop => {
-        const row = tableBody.insertRow();
-        const imgCell = row.insertCell();
-        const img = document.createElement('img');
-        // 确保URL路径和文件名正确
-        img.src = `https://markjinli.github.io/PrismGAFA/images/${laptop['Model']}.JPG`;
-        img.style.width = '100px'; // 设置图片大小
+        img.src = laptop[0]; // 图片链接现在直接从CSV的第一列读取
+        img.style.width = '100px';
         imgCell.appendChild(img);
 
-        Object.values(laptop).forEach((text, index) => {
-            if (index === 0) return; // Skip the model for the image URL
-            const cell = row.insertCell();
-            cell.textContent = text;
-        });
-    });
-}
-`;
-        img.style.width = '100px'; // 设置图片大小
-        imgCell.appendChild(img);
-
-        Object.values(laptop).forEach((text, index) => {
-            if (index === 0) return; // Skip image URL
+        laptop.slice(1).forEach(text => { // 从第二列开始读取其余数据
             const cell = row.insertCell();
             cell.textContent = text;
         });
