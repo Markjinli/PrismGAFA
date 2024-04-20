@@ -37,7 +37,7 @@ function displayLaptops(laptops) {
         const imgCell = row.insertCell();
         const img = document.createElement('img');
         // 确保URL路径和文件名正确
-        img.src = `https://markjinli.github.io/PrismGAFA/images/${encodeURI(laptop['Model'])}.JPG`;
+        img.src = `https://markjinli.github.io/PrismGAFA/images/${laptop['Model']}.JPG`;
         img.style.width = '100px'; // 设置图片大小
         imgCell.appendChild(img);
 
