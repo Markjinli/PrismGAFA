@@ -24,7 +24,7 @@ function displayLaptops(laptops) {
         const row = tableBody.insertRow();
         const imgCell = row.insertCell();
         const img = document.createElement('img');
-        img.src = laptop[0]; // 图片链接现在直接从CSV的第一列读取
+        img.src = 'https://markjinli.github.io/PrismGAFA/images/Y7000.JPG'; // 图片链接现在直接从CSV的第一列读取
         img.style.width = '100px';
         imgCell.appendChild(img);
 
