@@ -1,5 +1,5 @@
 async function fetchLaptops() {
-    const response = await fetch('https://raw.githubusercontent.com/yourusername/laptop-finder/main/data.csv');
+    const response = await fetch('https://raw.githubusercontent.com/Markjinli/PrismGAFA/main/Laptop_Data_UTF8.csv');
     const data = await response.text();
     displayLaptops(parseCSV(data));
 }
