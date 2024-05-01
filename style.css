@@ -21,16 +21,6 @@ th {
     background-color: #f2f2f2;
 }
 
-#priceSlider {
-    margin-bottom: 20px;
-}
-
-input[type="range"] {
-    width: 200px;
-    margin: 0 10px;
-}
-
 img {
-    max-width: 100px;
-    height: auto;
+    width: 100px; /* 控制图片大小 */
 }
